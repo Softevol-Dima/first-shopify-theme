@@ -4,10 +4,9 @@
 
 <div class="test">
   <h2>test</h2>
-  {% assign menu = linklists.collections %}
-  {{ menu.title }}: {{ menu.levels }}
-
-  <script>console.log({{ section.settings | json }});</script>
+  {% assign menuCollections = linklists.main-menu.links %}
+  {{menuCollections}}
+  <script>console.log({{menuCollections | json }});</script>
 </div>
 
 <div class="page-width">
@@ -25,7 +24,7 @@
     endif
   -%}
   <ul class="collection-list grid grid--1-col grid--3-col-tablet" role="list">
-    {%- for collection in collections -%}
+    {%- for collection in menuCollections -%}
       <li class="collection-list__item grid__item">
         {% render 'card-collection', card_collection: collection, media_aspect_ratio: section.settings.image_ratio, columns: 3 %}
       </li>
@@ -47,7 +46,7 @@
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu",
+      "label": "Select the",
       "default" : "main-menu"
     },    
     {

@@ -1,6 +1,15 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
+
+<div class="test">
+  <h2>test</h2>
+  {% assign menu = linklists.collections %}
+  {{ menu.title }}: {{ menu.levels }}
+
+  <script>console.log({{ section.settings | json }});</script>
+</div>
+
 <div class="page-width">
   <h1 class="title title--primary">{{ section.settings.title | escape }}</h1>
   {%- liquid
@@ -33,8 +42,14 @@
       "type": "text",
       "id": "title",
       "label": "t:sections.main-list-collections.settings.title.label",
-      "default": "Collections"
+      "default": "Standart"
     },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default" : "main-menu"
+    },    
     {
       "type": "select",
       "id": "sort",

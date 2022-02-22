@@ -1,0 +1,30 @@
+{% assign menuName = section.settings.menu %}
+{% assign menuCollections = linklists[menuName].links %}
+
+<div class="page-width">
+  {%- for link in menuCollections -%}
+  <h2 class="title"><img src="{{collections[link.title].image | image_url: width:26, height:26}}" alt=""><a href="{{link.url}}"></a>{{link.title}}</h1>  
+  <ul class="collection-list grid grid--1-col grid--3-col-tablet" role="list">
+    {%- for collection in collections[link.title].products -%}
+      <li class="collection-list__item grid__item">
+        {% render 'card-collection', item: collection %}
+      </li>
+    {%- endfor -%}
+  </ul>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "class": "section",
+  "settings": [
+    { 
+      "type": "link_list",
+      "id": "menu",
+      "label": "Select the collection",
+      "default" : "main-menu"
+    }
+  ]
+}
+{% endschema %}
